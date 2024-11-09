@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Kreait\Firebase\Tests\Unit\Http;
 
+use GuzzleHttp\Promise\PromiseInterface;
 use InvalidArgumentException;
 use Kreait\Firebase\Http\HttpClientOptions;
 use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\RequestInterface;
 
 /**
  * @internal
@@ -124,5 +126,18 @@ final class HttpClientOptionsTest extends TestCase
 
         $this->assertIsCallable($middlewares[1]['middleware']);
         $this->assertSame('Foo', $middlewares[1]['name']);
+    }
+
+    #[Test]
+    public function itAcceptsACustomHandler(): void
+    {
+        $handler = fn(RequestInterface $request, array $options): PromiseInterface => $this->createMock(PromiseInterface::class);
+
+        $options = HttpClientOptions::default()->withGuzzleHandler($handler);
+
+        $config = $options->guzzleConfig();
+
+        $this->assertArrayHasKey('handler', $config);
+        $this->assertSame($handler, $config['handler']);
     }
 }

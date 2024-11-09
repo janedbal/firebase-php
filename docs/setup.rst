@@ -196,6 +196,9 @@ service.
     // (default: none)
     $options = $options->withProxy('tcp://<host>:<port>');
 
+    // Use a custom handler
+    $options = $options->withGuzzleHandler(...);
+
     $factory = $factory->withHttpClientOptions($options);
 
     // Newly created services will now use the new HTTP options

@@ -7,6 +7,11 @@ Please read about the future of the Firebase Admin PHP SDK on the
 
 ## [Unreleased]
 
+### Added
+
+* It is now possible to override the Guzzle HTTP handler by using the `HttpClientOptions::withGuzzleHandler()` method.
+  ([#956](https://github.com/kreait/firebase-php/pull/956))
+
 ### Changed
 
 * The Messaging component doesn't rely on the `CloudMessage` class for message handling anymore. If you provide a
