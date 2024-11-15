@@ -111,6 +111,7 @@
             "tests/bin/reset-project"
         ],
         "test": [
+            "Composer\\Config::disableProcessTimeout",
             "@analyze",
             "@test-dependencies",
             "vendor/bin/phpunit --stop-on-error --stop-on-failure"
