@@ -389,7 +389,6 @@ final class Factory
         return new Database(
             GuzzleUtils::uriFor($databaseUrl),
             new Database\ApiClient($http, $resourceUrlBuilder),
-            $resourceUrlBuilder,
         );
     }
 

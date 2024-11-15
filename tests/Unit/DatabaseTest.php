@@ -8,7 +8,6 @@ use GuzzleHttp\Psr7\Uri;
 use Kreait\Firebase\Database;
 use Kreait\Firebase\Database\ApiClient;
 use Kreait\Firebase\Database\RuleSet;
-use Kreait\Firebase\Database\UrlBuilder;
 use Kreait\Firebase\Exception\InvalidArgumentException;
 use Kreait\Firebase\Tests\UnitTestCase;
 use PHPUnit\Framework\Attributes\Test;
@@ -21,16 +20,14 @@ final class DatabaseTest extends UnitTestCase
 {
     private ApiClient&MockObject $apiClient;
     private string $url;
-    private Uri $uri;
     private Database $database;
 
     protected function setUp(): void
     {
         $this->url = 'https://database.firebaseio.com';
-        $this->uri = new Uri($this->url);
         $this->apiClient = $this->createMock(ApiClient::class);
 
-        $this->database = new Database($this->uri, $this->apiClient, UrlBuilder::create($this->url));
+        $this->database = new Database(new Uri($this->url), $this->apiClient);
     }
 
     #[Test]

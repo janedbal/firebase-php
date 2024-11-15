@@ -48,9 +48,7 @@ final class UrlBuilderTest extends UnitTestCase
     #[Test]
     public function getGetUrl(string $baseUrl, string $path, array $queryParams, string $expected): void
     {
-        $url = UrlBuilder::create($baseUrl)->getUrl($path, $queryParams);
-
-        $this->assertSame($expected, $url);
+        $this->assertSame($expected, UrlBuilder::create($baseUrl)->getUrl($path, $queryParams));
     }
 
     /**
@@ -64,9 +62,8 @@ final class UrlBuilderTest extends UnitTestCase
     public function emulated(string $emulatorHost, string $baseUrl, string $path, array $queryParams, string $expected): void
     {
         Util::putenv('FIREBASE_DATABASE_EMULATOR_HOST', $emulatorHost);
-        $url = UrlBuilder::create($baseUrl)->getUrl($path, $queryParams);
 
-        $this->assertSame($expected, $url);
+        $this->assertSame($expected, UrlBuilder::create($baseUrl)->getUrl($path, $queryParams));
     }
 
     public static function realUrls(): Iterator

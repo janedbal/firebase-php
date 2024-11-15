@@ -7,7 +7,6 @@ namespace Kreait\Firebase\Tests\Unit\Database;
 use GuzzleHttp\Psr7\Uri;
 use Kreait\Firebase\Database\ApiClient;
 use Kreait\Firebase\Database\Reference;
-use Kreait\Firebase\Database\UrlBuilder;
 use Kreait\Firebase\Exception\InvalidArgumentException;
 use Kreait\Firebase\Exception\OutOfRangeException;
 use Kreait\Firebase\Tests\UnitTestCase;
@@ -32,7 +31,6 @@ final class ReferenceTest extends UnitTestCase
         $this->reference = new Reference(
             new Uri($url),
             $this->apiClient,
-            UrlBuilder::create($url),
         );
     }
 
